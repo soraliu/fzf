@@ -87,7 +87,7 @@ fzf-cd-widget() {
   return $ret
 }
 zle     -N    fzf-cd-widget
-bindkey '\ec' fzf-cd-widget
+bindkey '^]' fzf-cd-widget
 
 # CTRL-R - Paste the selected command from history into the command line
 fzf-history-widget() {
@@ -106,7 +106,16 @@ fzf-history-widget() {
   return $ret
 }
 zle     -N   fzf-history-widget
-bindkey '^R' fzf-history-widget
+bindkey '^O' fzf-history-widget
+
+# CTRL-E - Paste the selected command from history into the command line
+fzf-pet-widget() {
+  LBUFFER="$(pet search --color)"
+  zle reset-prompt
+}
+zle     -N   fzf-pet-widget
+bindkey '^R' fzf-pet-widget
+
 
 } always {
   eval $__fzf_key_bindings_options
